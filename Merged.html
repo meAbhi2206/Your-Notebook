@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Notebook</title>
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    />
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- CSS -->
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #dba800;
+        padding: 10px;
+        display: flex;
+        justify-content: center; /* Center content horizontally */
+        align-items: center; /* Center content vertically */
+        min-height: 100vh; /* Ensure body covers the full viewport height */
+      }
+
+      .container {
+        background-color: #fff;
+        width: 90%;
+        max-width: 600px;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+        box-sizing: border-box;
+        margin: auto; /* Centering the container */
+      }
+
+      .options {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 15px;
+        padding: 16px;
+        background: #eee;
+        border-radius: 15px;
+      }
+
+      .options .head {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 5px;
+        flex-wrap: wrap;
+      }
+
+      .options .head > input {
+        max-width: 100px;
+        padding: 6px 10px;
+        border-radius: 6px;
+        border: 2px solid #ddd;
+        outline: none;
+        color: #795d00;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .options .head select {
+        background: #fff;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        outline: none;
+        cursor: pointer;
+      }
+
+      .options .head .color {
+        background: #fff;
+        border: 2px solid #ddd;
+        border-radius: 6px;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 10px;
+      }
+
+      .options .head .color span {
+        font-size: 14px;
+      }
+
+      .options .head .color input {
+        border: none;
+        padding: 0;
+        width: 26px;
+        height: 26px;
+        background: #fff;
+        cursor: pointer;
+      }
+
+      .options .head .color input::-moz-color-swatch {
+        width: 20px;
+        height: 20px;
+        border: none;
+        border-radius: 50%;
+      }
+
+      button {
+        height: 28px;
+        width: 28px;
+        display: grid;
+        place-items: center;
+        border: none;
+        background-color: #dba800;
+        color: #ffffff;
+        border-radius: 3px;
+        cursor: pointer;
+        outline: none;
+        transition: all 0.3s;
+      }
+
+      button:hover {
+        background-color: #795d00;
+      }
+
+      select {
+        padding: 7px;
+        border: 1px solid #020929;
+        border-radius: 3px;
+        outline: none;
+        color: #795d00;
+      }
+
+      select:hover {
+        border-color: #795d00;
+      }
+
+      .options label,
+      .options select {
+        font-size: 15px;
+        font-family: "Poppins", sans-serif;
+      }
+
+      .input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      input[type="color"] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-color: transparent;
+        width: 40px;
+        height: 28px;
+        border: none;
+        cursor: pointer;
+      }
+
+      input[type="color"]::-webkit-color-swatch {
+        border-radius: 15px;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+      }
+
+      input[type="color"]::-moz-color-swatch {
+        border-radius: 15px;
+        box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+      }
+
+      /* Textarea */
+      #text-input {
+        margin-top: 10px;
+        border: 1px solid #cecbcba7;
+        border-radius: 10px;
+        padding: 20px;
+        height: 50vh; /* Maintain 50% of viewport height */
+        max-height: 70vh; /* Limit maximum height to 70% of viewport height */
+        overflow-y: auto;
+        resize: vertical;
+        word-wrap: break-word;
+      }
+
+      .active {
+        background-color: #795d00;
+      }
+
+      /* Media Queries for Responsive Design */
+      @media (max-width: 600px) {
+        .container {
+          width: 90%;
+          padding: 20px;
+        }
+
+        button {
+          height: 24px;
+          width: 24px;
+        }
+
+        select {
+          padding: 5px;
+        }
+
+        .options label,
+        .options select {
+          font-size: 14px;
+        }
+
+        #text-input {
+          padding: 15px;
+        }
+      }
+
+      @media (max-width: 400px) {
+        .container {
+          padding: 10px;
+        }
+
+        button {
+          height: 20px;
+          width: 20px;
+        }
+
+        select {
+          padding: 4px;
+        }
+
+        .options label,
+        .options select {
+          font-size: 13px;
+        }
+
+        #text-input {
+          padding: 10px;
+        }
+      }
+      @media print {
+        #text-input {
+          border: none; /* Hide border when printing */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="options">
+        <div class="head">
+          <input
+            type="text"
+            placeholder="Filename"
+            value="Untitled"
+            id="filename"
+          />
+
+          <!-- Font Section -->
+          <select id="fontName" class="adv-option-button"></select>
+          <select id="fontSize" class="adv-option-button"></select>
+
+          <!-- Headings -->
+          <select id="formatBlock" class="adv-option-button">
+            <option value="H1">Heading 1</option>
+            <option value="H2">Heading 2</option>
+            <option value="H3">Heading 3</option>
+            <option value="H4">Heading 4</option>
+            <option value="H5">Heading 5</option>
+            <option value="H6">Heading 6</option>
+            <option value="P">Paragraph</option>
+          </select>
+
+          <!-- Save File format  -->
+          <select onchange="fileHandle(this.value); this.selectedIndex=0">
+            <option value="" selected="" hidden="" disabled="">File</option>
+            <option value="new">New file</option>
+            <option value="txt">Save as txt</option>
+            <option value="pdf">Save as pdf</option>
+          </select>
+
+          <!-- Color -->
+          <div class="input-wrapper">
+            <input type="color" id="foreColor" class="adv-option-button" />
+            <label for="foreColor">Font Color</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="color" id="backColor" class="adv-option-button" />
+            <label for="backColor">Highlight Color</label>
+          </div>
+        </div>
+        <!-- Format Text -->
+        <button id="bold" class="option-button format" title="Bold">
+          <i class="fa-solid fa-bold"></i>
+        </button>
+        <button id="italic" class="option-button format" title="Italic">
+          <i class="fa-solid fa-italic"></i>
+        </button>
+        <button id="underline" class="option-button format" title="Underline">
+          <i class="fa-solid fa-underline"></i>
+        </button>
+        <button
+          id="strikethrough"
+          class="option-button format"
+          title="StrikeThrough"
+        >
+          <i class="fa-solid fa-strikethrough"></i>
+        </button>
+        <button
+          id="superscript"
+          class="option-button script"
+          title="Superscript"
+        >
+          <i class="fa-solid fa-superscript"></i>
+        </button>
+        <button id="subscript" class="option-button script" title="Subscript">
+          <i class="fa-solid fa-subscript"></i>
+        </button>
+
+        <!-- Lists -->
+        <button id="ordered-list" class="option-button list" title="Numbers">
+          <i class="fa-solid fa-list-ol"></i>
+        </button>
+        <button id="insertUnorderedList" class="option-button" title="Bullets">
+          <i class="fa-solid fa-list"></i>
+        </button>
+
+        <!-- Undo-Redo -->
+        <button id="undo" class="option-button" title="Undo">
+          <i class="fa-solid fa-rotate-left"></i>
+        </button>
+        <button id="redo" class="option-button" title="Redo">
+          <i class="fa-solid fa-rotate-right"></i>
+        </button>
+
+        <!-- Make a Link -->
+        <button id="createLink" class="adv-option-button" title="Link">
+          <i class="fa fa-link"></i>
+        </button>
+        <button id="unlink" class="option-button" title="Unlink">
+          <i class="fa fa-unlink"></i>
+        </button>
+
+        <!-- Insert Image -->
+        <button id="insertImage" class="adv-option-button" title="Insert Image">
+          <i class="fa-solid fa-image"></i>
+        </button>
+
+        <!-- Alignments -->
+        <button id="justifyLeft" class="option-button align" title="LeftAlign">
+          <i class="fa-solid fa-align-left"></i>
+        </button>
+        <button
+          id="justifyCenter"
+          class="option-button align"
+          title="AlignCenter"
+        >
+          <i class="fa-solid fa-align-center"></i>
+        </button>
+        <button
+          id="justifyRight"
+          class="option-button align"
+          title="AlignRight"
+        >
+          <i class="fa-solid fa-align-right"></i>
+        </button>
+        <button id="justifyFull" class="option-button align" title="AlignFull">
+          <i class="fa-solid fa-align-justify"></i>
+        </button>
+        <button id="indent" class="option-button spacing" title="leftIndent">
+          <i class="fa-solid fa-indent"></i>
+        </button>
+        <button id="outdent" class="option-button spacing" title="RightIndent">
+          <i class="fa-solid fa-outdent"></i>
+        </button>
+      </div>
+
+      <!-- Text Input Area -->
+      <div id="text-input" contenteditable="true"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+      integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- JavaScript -->
+    <script>
+      // Selecting all necessary DOM elements
+      let optionsButtons = document.querySelectorAll(".option-button");
+      let advancedOptionButtons =
+        document.querySelectorAll(".adv-option-button");
+      let fontName = document.getElementById("fontName");
+      let fontSizeRef = document.getElementById("fontSize");
+      let writingArea = document.getElementById("text-input");
+      let linkButton = document.getElementById("createLink");
+      let alignButtons = document.querySelectorAll(".align");
+      let spacingButtons = document.querySelectorAll(".spacing");
+      let formatButtons = document.querySelectorAll(".format");
+      let scriptButtons = document.querySelectorAll(".script");
+      let imageButton = document.getElementById("insertImage");
+
+      // A more comprehensive list of fonts
+      let fontList = [
+        "Arial",
+        "Verdana",
+        "Times New Roman",
+        "Garamond",
+        "Georgia",
+        "Courier New",
+        "Trebuchet MS",
+        "Tahoma",
+        "Impact",
+        "Comic Sans MS",
+        "Palatino Linotype",
+        "Bookman Old Style",
+        "Century Gothic",
+        "Lucida Sans Unicode",
+        "Arial Black",
+        "Franklin Gothic Medium",
+        "Gill Sans MT",
+        "Helvetica",
+        "Segoe UI",
+        "Roboto",
+        "Open Sans",
+        "Lora",
+        "Poppins",
+        "Montserrat",
+        "Raleway",
+        "Ubuntu",
+        "Lato",
+        "Oswald",
+        "Source Sans Pro",
+        "Noto Sans",
+        "Fira Sans",
+        "Inter",
+        "Playfair Display",
+        "Merriweather",
+        "Alegreya Sans",
+        "Work Sans",
+        "Libre Franklin",
+        "Nunito Sans",
+        "Roboto Slab",
+        "Playfair Display",
+        "Merriweather Sans",
+        "Poppins",
+        "Roboto",
+        "Open Sans",
+        "Arial",
+        "Helvetica",
+        "Verdana",
+        "Times New Roman",
+        "Georgia",
+        "Courier New",
+        "cursive",
+      ];
+
+      // Function to initialize the text editor
+      const initializeEditor = () => {
+        // Highlighter for various button groups
+        highlighter(alignButtons, true);
+        highlighter(spacingButtons, true);
+        highlighter(formatButtons, false);
+        highlighter(scriptButtons, true);
+
+        // Populate font names dropdown
+        fontList.forEach((value) => {
+          let option = document.createElement("option");
+          option.value = value;
+          option.innerHTML = value;
+          fontName.appendChild(option);
+        });
+
+        // Populate font sizes dropdown (1 to 7)
+        for (let i = 1; i <= 7; i++) {
+          let option = document.createElement("option");
+          option.value = i;
+          option.innerHTML = i;
+          fontSizeRef.appendChild(option);
+        }
+
+        // Set default font size
+        fontSizeRef.value = 3;
+      };
+
+      // Function to modify text based on command and value
+      const modifyText = (command, defaultValue, value) => {
+        document.execCommand(command, defaultValue, value);
+      };
+
+      // Event listeners for basic operation buttons
+      optionsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          modifyText(button.id, false, null);
+        });
+      });
+
+      // Event listeners for advanced options requiring values
+      advancedOptionButtons.forEach((button) => {
+        button.addEventListener("change", () => {
+          modifyText(button.id, false, button.value);
+        });
+      });
+
+      // Event listener for creating a link
+      linkButton.addEventListener("click", () => {
+        let userLink = prompt("Enter a URL");
+        if (userLink && userLink !== "") {
+          if (!/^(http|https):\/\//i.test(userLink)) {
+            userLink = "http://" + userLink;
+          }
+          modifyText(linkButton.id, false, userLink);
+        }
+      });
+
+      // Function to highlight clicked buttons
+      const highlighter = (buttons, singleHighlight) => {
+        buttons.forEach((button) => {
+          button.addEventListener("click", () => {
+            if (singleHighlight) {
+              // Clear all highlights
+              buttons.forEach((btn) => {
+                btn.classList.remove("active");
+              });
+            }
+            button.classList.toggle("active");
+          });
+        });
+      };
+
+      // Event listener for creating ordered list
+      document.getElementById("ordered-list").addEventListener("click", () => {
+        document.execCommand("formatBlock", false, "<OL>");
+      });
+
+      // Event listener for creating unordered list
+      document
+        .getElementById("insertUnorderedList")
+        .addEventListener("click", () => {
+          document.execCommand("formatBlock", false, "<UL>");
+        });
+
+      // for saving file
+      const filename = document.getElementById("filename");
+
+      function fileHandle(value) {
+        if (value === "new") {
+          writingArea.innerHTML = ""; // Clear the text area
+          filename.value = "Untitled"; // Reset filename input
+        } else if (value === "txt") {
+          const blob = new Blob([writingArea.textContent], {
+            type: "text/plain",
+          });
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = `${filename.value}.txt`;
+          link.click();
+        } else if (value === "pdf") {
+          html2pdf().from(writingArea).save(`${filename.value}.pdf`);
+        }
+      }
+
+      // Initialize the text editor on page load
+      window.onload = initializeEditor;
+    </script>
+  </body>
+</html>

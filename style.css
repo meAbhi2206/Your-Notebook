@@ -1,0 +1,229 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #dba800;
+  padding: 10px;
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  min-height: 100vh; /* Ensure body covers the full viewport height */
+}
+
+.container {
+  background-color: #fff;
+  width: 90%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+  box-sizing: border-box;
+  margin: auto; /* Centering the container */
+}
+
+.options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background: #eee;
+  border-radius: 15px;
+}
+
+.options .head {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.options .head > input {
+  max-width: 100px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  outline: none;
+  color: #795d00;
+  font-family: "Poppins", sans-serif;
+}
+
+.options .head select {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+.options .head .color {
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+}
+
+.options .head .color span {
+  font-size: 14px;
+}
+
+.options .head .color input {
+  border: none;
+  padding: 0;
+  width: 26px;
+  height: 26px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.options .head .color input::-moz-color-swatch {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 50%;
+}
+
+button {
+  height: 28px;
+  width: 28px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background-color: #dba800;
+  color: #ffffff;
+  border-radius: 3px;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.3s;
+}
+
+button:hover {
+  background-color: #795d00;
+}
+
+select {
+  padding: 7px;
+  border: 1px solid #020929;
+  border-radius: 3px;
+  outline: none;
+  color: #795d00;
+}
+
+select:hover {
+  border-color: #795d00;
+}
+
+.options label,
+.options select {
+  font-size: 15px;
+  font-family: "Poppins", sans-serif;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+input[type="color"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  width: 40px;
+  height: 28px;
+  border: none;
+  cursor: pointer;
+}
+
+input[type="color"]::-webkit-color-swatch {
+  border-radius: 15px;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+}
+
+input[type="color"]::-moz-color-swatch {
+  border-radius: 15px;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 3px #020929;
+}
+
+/* Textarea */
+#text-input {
+  margin-top: 10px;
+  border: 1px solid #969696;
+  border-radius: 10px;
+  padding: 20px;
+  height: 50vh; /* Maintain 50% of viewport height */
+  max-height: 70vh; /* Limit maximum height to 70% of viewport height */
+  overflow-y: auto;
+  resize: vertical;
+  word-wrap: break-word;
+}
+
+.active {
+  background-color: #795d00;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 600px) {
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
+
+  button {
+    height: 24px;
+    width: 24px;
+  }
+
+  select {
+    padding: 5px;
+  }
+
+  .options label,
+  .options select {
+    font-size: 14px;
+  }
+
+  #text-input {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 400px) {
+  .container {
+    padding: 10px;
+  }
+
+  button {
+    height: 20px;
+    width: 20px;
+  }
+
+  select {
+    padding: 4px;
+  }
+
+  .options label,
+  .options select {
+    font-size: 13px;
+  }
+
+  #text-input {
+    padding: 10px;
+  }
+}
+
+@media print {
+  #text-input {
+    border: none; /* Hide border when printing */
+  }
+}
