@@ -13,6 +13,13 @@ Your Notebook is a web-based text editor built with HTML, CSS, and JavaScript. I
 
 ![Preview](Preview.png)
 
+### How to Save the File
+- Write your File Name in the `Untitled` box or leave it as Untitled.
+- In the `File select` option
+  * Choose the file type as `txt` or `pdf`.
+- The File will be downloaded.
+
+
 ## Features
 - Clean and user-friendly interface
 - Basic text formatting options (bold, italic, underline and much more).
